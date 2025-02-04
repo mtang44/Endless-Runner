@@ -1,6 +1,6 @@
 // Michael Tang 
 // Endless Runner
-// time taken 3 hrs
+// time taken 7 hrs
 
 let config = {
     type: Phaser.AUTO,
@@ -13,7 +13,7 @@ let config = {
         defualt: 'arcade',
         debug: true
     },
-    scene: [Loading,Menu,Play]
+    scene: [Loading, Menu, Play]
 
 }
 

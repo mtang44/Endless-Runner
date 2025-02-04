@@ -11,13 +11,16 @@ class Play extends Phaser.Scene{
        
         this.player = new Fire_Truck(this,w/2 - 25,h - 175,'fire_truck',0).setOrigin(0,0)
         this.player.setScale(5)
-
-
+        
+        //define keys
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
 
     }
     update(){
-        this.road.tilePositionY -= 1
+        this.road.tilePositionY -= .8
         this.grass.tilePositionY-= .5
+        this.player.update()
     }
 
 

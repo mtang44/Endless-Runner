@@ -3,6 +3,7 @@ class Fire_Truck extends Phaser.GameObjects.Sprite{
         super(scene,x,y,texture,frame)
         
         scene.add.existing(this)
+        this.moveSpeed = 20
         this.isFiring = false
         this.water = 100
         this.mouseActive = true
@@ -10,7 +11,19 @@ class Fire_Truck extends Phaser.GameObjects.Sprite{
         this.anims.play('fire_truck_animation')
     }
     update(){
-
+        if(keyLEFT.isDown && keyRIGHT.isDown){
+            // do nothing
+        }
+        else if(keyLEFT.isDown && this.x > 255){
+            this.x -= this.moveSpeed
+        }
+        else if(keyRIGHT.isDown && this.x < 655){
+            this.x += this.moveSpeed
+        }
+        if(game.input.activePointer.leftButtonDown()){
+            console.log(`mouse left active at x: ${game.input.mousePointer.x}, y: ${game.input.mousePointer.y}`)
+            
+        }
     }
 
 }

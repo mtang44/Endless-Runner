@@ -16,7 +16,8 @@ preload(){
     })
     this.load.image('grass','./assets/grass.png')
     this.load.image('road','./assets/road.png')
-    this.load.image('water','./assets/water_bucket.png')
+    this.load.image('water_bucket','./assets/water_bucket.png')
+    this.load.image('water','./assets/water.png')
     this.load.spritesheet('fire_truck','./assets/fire_truck.png',{
         frameWidth: 15,
         frameHeight: 24,

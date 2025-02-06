@@ -1,6 +1,6 @@
 // Michael Tang 
 // Endless Runner
-// time taken 7 hrs
+// time taken 15 hrs
 
 let config = {
     type: Phaser.AUTO,
@@ -19,7 +19,7 @@ let config = {
 
 let game = new Phaser.Game(config)
 
-let keyLEFT, keyRIGHT
+let keyLEFT, keyRIGHT,keyWATER
 let w = game.config.width
 let h = game.config.height
 let centerY = game.config.height / 2

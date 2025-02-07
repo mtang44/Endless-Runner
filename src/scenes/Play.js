@@ -8,29 +8,32 @@ class Play extends Phaser.Scene{
         this.grass.setScale(10)
         this.road = this.add.tileSprite(w/4,0,51,640,'road').setOrigin(0,0)
         this.road.setScale(10)
-       
+        this.house = new House(this, 100, 50, 'fire_house',0).setOrigin(0,0)
+        this.house.setScale(5
+        )
         this.player = new Fire_Truck(this,w/2 - 25,h - 175,'fire_truck',0).setOrigin(0,0)
-        this.player.setScale(5)
+        this.player.setScale(2)
         
         // create particle emitter
 
         const emitters = this.add.particles(0,0,'water',{
-            speed: { min: 50, max: 200 },
             emitting: false,
+            speed: { min: 50, max: 200 },
             advance: 2000,
             lifespan: 500,
             scale: { start: .7, end: 1.3},
             sortOrderAsc: true,
             blendMode:'ADD',
+            
             color: [ 0x2d1fab, 0x296cd9, 0x4474c2, 0x296cd9 ],
             x:{
                 onEmit:()=>{
-                    return this.player.x +40
+                    return this.player.x +45
                 }
             },
             y:{
                 onEmit:()=>{
-                    return this.player.y + 15
+                    return this.player.y + 20
                 }
             },
             moveToX:{
@@ -49,11 +52,7 @@ class Play extends Phaser.Scene{
                     return game.input.mousePointer.y + Phaser.Math.Between(-25, 40)
                 }
             },
-            angle:{
-                onEmit:() =>{
-                   return Math.atan((game.input.mousePointer.y - this.player.y) / (game.input.mousePointer.x - this.player.x))* 180 / Math.PI
-                },
-            }
+
         })
         this.input.on('pointerdown', pointer => {
 
@@ -71,6 +70,7 @@ class Play extends Phaser.Scene{
             emitters.emitting = false
 
         })
+        
         //emitters.setPosition(this.player.x + 40,this.player.y + 30)
         // end of particle emitter
         //define keys
@@ -83,6 +83,7 @@ class Play extends Phaser.Scene{
 
         this.road.tilePositionY -= .8
         this.grass.tilePositionY-= .5
+        this.house.update()
         this.player.update()
 
 

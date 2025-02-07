@@ -1,11 +1,11 @@
 // Michael Tang 
 // Endless Runner
-// time taken 15 hrs
+// time taken 18 hrs
 
 let config = {
     type: Phaser.AUTO,
     width: 960,
-    height: 640,
+    height: 800,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },

@@ -15,11 +15,17 @@ preload(){
         loadingBar.destroy()
     })
 
+    // load audio
     this.load.audio('sfx-siren','./assets/siren.mp3')
     this.load.audio('sfx-drive','./assets/drive.mp3')
     this.load.audio('sfx-spray','./assets/spray.mp3')
     this.load.audio('sfx-background','./assets/background.mp3')
     this.load.audio('sfx-fire','./assets/fire_sound.mp3')
+    this.load.audio('sfx-error','./assets/error.wav')
+
+    // load menu
+    this.load.image('fire_background','./assets/fire_background.png')
+    this.load.image('menu','./assets/menu.png')
     this.load.image('grass','./assets/grass.png')
     this.load.image('road','./assets/road.png')
     this.load.image('water_bucket','./assets/water_bucket.png')
@@ -40,7 +46,8 @@ preload(){
 
         endFrame: 2
     })
-    // load audop
+
+    // load audio
 }
 create(){
     console.log('Scene: load')

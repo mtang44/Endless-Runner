@@ -47,6 +47,7 @@ class House extends Phaser.GameObjects.Sprite{
         }
         if(!this.burning && !this.alreadyScored)
             {
+                gameSpeed += .2
                 this.playerScore+= 10
                 this.alreadyScored = true
             }

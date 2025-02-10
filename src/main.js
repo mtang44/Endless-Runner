@@ -1,8 +1,9 @@
 // Michael Tang 
 // Endless Runner
-// time taken 27 hrs
+// time taken 29 hrs
 // background music: allworldmusic from Pixably
 // ding sound: robinhood76 from freesound.org 
+// error sound: distillerystudio from freesound.org 
 let config = {
     type: Phaser.AUTO,
     width: 960,
@@ -20,7 +21,7 @@ let config = {
 
 let game = new Phaser.Game(config)
 
-let keyLEFT, keyRIGHT,keyWATER
+let keyLEFT, keyRIGHT,keyWATER,keyEnter, keyReset, keyMenu
 let w = game.config.width
 let h = game.config.height
 let centerY = game.config.height / 2

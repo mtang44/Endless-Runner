@@ -2,7 +2,7 @@ class Fire_Truck extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y, texture, frame){
         super(scene,x,y,texture,frame)
         
-        scene.add.existing(this)
+        this.scene.add.existing(this)
         
         this.moveSpeed = 10
         this.isFiring = false
@@ -13,21 +13,30 @@ class Fire_Truck extends Phaser.GameObjects.Sprite{
         this.sfxSiren.setVolume(.3)
         this.sfxDrive = scene.sound.add('sfx-drive')
         this.sfxDrive.setLoop(true)
-        this.sfxDrive.setVolume(1)
+        this.sfxDrive.setVolume(1.2)
         this.sfxSpray = scene.sound.add('sfx-spray')
         this.sfxSpray.setVolume(.3)
-        
+        this.sfxError = scene.sound.add('sfx-error')
+        this.sfxError.setVolume(.3)
+        this.sfxError.setLoop(true)
         game.input.mouse.capture = true
         this.anims.play('fire_truck_animation')
 
         this.sfxSiren.play()
         this.sfxDrive.play()
+        this.sfxError.setMute(true)
+        this.sfxError.play()
+        
         
 
         
     }
     update(){
         
+        if(this.water > 0)
+        {
+            this.sfxError.setMute(true)
+        }
         if(keyLEFT.isDown && keyRIGHT.isDown){
             // do nothing
         }
@@ -54,8 +63,8 @@ class Fire_Truck extends Phaser.GameObjects.Sprite{
             this.sfxSpray.stop()
             console.log('stopped firing')
         }
-        else{
-            // do nothing
+        else if(game.input.activePointer.leftButtonDown() && this.water <0 ){
+            this.sfxError.setMute(false)
         }
         if(keyWATER.isDown){
            

@@ -52,7 +52,22 @@ class Play extends Phaser.Scene{
             }
             this.scoreDisplay = this.add.text(w - 205, 10, this.player.playerScore,scoreConfig)
             scoreConfig.fixedWidth = 0
+            
 
+            let waterConfig = {
+                fontFamily: 'Courier',
+                fontSize: '28px',
+                backgroundColor: '#21a7f0',
+                color: '#1c56a9',
+                align: 'left',
+                padding: {
+                    top: 5,
+                    bottom: 5,
+                },
+                fixedWidth: 200
+                }
+                this.waterDisplay = this.add.text(10, 10, this.player.water,waterConfig)
+                waterConfig.fixedWidth = 0
         // create particle emitter
 
         const emitters = this.add.particles(0,0,'water',{
@@ -140,6 +155,7 @@ class Play extends Phaser.Scene{
         this.player.update()
         
         this.scoreDisplay.text = ("Score: " + Math.round(this.house.playerScore))
+        this.waterDisplay.text = ("Water: " + Math.round(this.player.water) + "%")
         
 
     }

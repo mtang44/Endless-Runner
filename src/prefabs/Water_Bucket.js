@@ -3,7 +3,7 @@ class Water_Bucket extends Phaser.GameObjects.Sprite{
         super(scene,x,y,texture,frame)
         
         scene.add.existing(this)
-        this.moveSpeed = 7
+        this.moveSpeed = 3
         this.validX = [w/4 + 50,w/2 -50, w/2 + 130 ]
        
 }
@@ -12,7 +12,7 @@ update(){
     if(this.y >  h + 100)
         {
             this.x = Phaser.Math.RND.pick(this.validX)
-            this.y = Phaser.Math.Between(-100,-600)
+            this.y = Phaser.Math.Between(-500,-700)
         }
 }
 }

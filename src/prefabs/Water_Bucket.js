@@ -1,8 +1,13 @@
-class Water_Bucket extends Phaser.GameObjects.Sprite{
+class Water_Bucket extends Phaser.Physics.Arcade.Sprite{
     constructor(scene,x,y,texture,frame){
         super(scene,x,y,texture,frame)
         
+      
         scene.add.existing(this)
+        //scene.physics.add.existing(this) 
+        
+        //this.body.setSize(this.width/2,this.height/2)
+        //this.setImmovable()
         this.moveSpeed = 3
         this.validX = [w/4 + 50,w/2 -50, w/2 + 130 ]
        

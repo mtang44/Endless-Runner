@@ -1,4 +1,4 @@
-class Road_Block extends Phaser.GameObjects.Sprite{
+class Road_Block extends Phaser.Physics.Arcade.Sprite{
     constructor(scene,x,y,texture,frame){
         super(scene,x,y,texture,frame)
         

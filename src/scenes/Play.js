@@ -134,7 +134,10 @@ class Play extends Phaser.Scene{
             emitters.emitting = false
 
         })
-        
+        this.input.keyboard.on('keydown-G', function() {
+            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
+            this.physics.world.debugGraphic.clear()
+        }, this)
         
         //emitters.setPosition(this.player.x + 40,this.player.y + 30)
         // end of particle emitter

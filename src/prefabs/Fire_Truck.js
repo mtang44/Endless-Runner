@@ -3,6 +3,8 @@ class Fire_Truck extends Phaser.Physics.Arcade.Sprite{
         super(scene,x,y,texture,frame)
         
         this.scene.add.existing(this)
+        scene.physics.add.existing(this) 
+        this.body.onCollide = true
         
         this.moveSpeed = 10
         this.isFiring = false
@@ -61,15 +63,15 @@ class Fire_Truck extends Phaser.Physics.Arcade.Sprite{
         else if(game.input.activePointer.leftButtonReleased() && this.isFiring){
             this.isFiring = false
             this.sfxSpray.stop()
-            console.log('stopped firing')
+            //console.log('stopped firing')
         }
         else if(game.input.activePointer.leftButtonDown() && this.water <0 ){
             this.sfxError.setMute(false)
-        }
-        if(keyWATER.isDown){
+        // }
+        // if(keyWATER.isDown){
            
-            this.water = 100
-           // console.log(`Water: ${this.water}`)
+        //     this.water = 100
+        //    // console.log(`Water: ${this.water}`)
         }
         
         

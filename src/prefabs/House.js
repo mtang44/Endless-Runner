@@ -37,7 +37,7 @@ class House extends Phaser.GameObjects.Sprite{
                 this.y = Phaser.Math.Between(-100,-600)
                 this.anims.play('fireHouse')
                 this.sfxFire.play()
-                console.log(this.playerScore)
+                //console.log(this.playerScore)
             }
         if(this.fire < 0)
         {
@@ -47,7 +47,7 @@ class House extends Phaser.GameObjects.Sprite{
         }
         if(!this.burning && !this.alreadyScored)
             {
-                gameSpeed += .2
+                gameSpeed += .1
                 this.playerScore+= 10
                 this.alreadyScored = true
             }

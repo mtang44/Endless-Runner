@@ -15,9 +15,8 @@ class Play extends Phaser.Scene{
         this.roadBlock.setScale(2.5)
         this.roadBlock2 = new Road_Block(this,w/2 + 130,0,'road_block',0).setOrigin(0,0)
         this.roadBlock2.setScale(2.5)
-        this.barrierGroup = this.add.group({
-            runChildUpdate: true    // make sure update runs on group children
-        });
+        this.barrierGroup = this.add.group([this.roadBlock,this.roadBlock2
+        ])
         this.barrierGroup.add(this.roadBlock)
         this.barrierGroup.add(this.roadBlock2)
         this.water_bucket = new Water_Bucket(this,w/4 + 50 ,-300,'water_bucket',0).setOrigin(0,0)
@@ -36,6 +35,8 @@ class Play extends Phaser.Scene{
         this.sfxBackground = this.sound.add('sfx-background')
         this.sfxBackground.setLoop(true)
         this.sfxBackground.setVolume(.4)
+        this.sfxCrash = this.sound.add('sfx-crash')
+        this.sfxCrash.setVolume(.4)
 
         //create score UI
         let scoreConfig = {
@@ -110,12 +111,12 @@ class Play extends Phaser.Scene{
         })
         this.house.on('drag',(pointer,dragX, dragY)=>{
             if(this.player.water > 0){
-            console.log("water detected")
+           // console.log("water detected")
             this.house.fire -= 2
-            console.log(`fire level: ${this.house.fire}`)
+            //console.log(`fire level: ${this.house.fire}`)
             }
             else{
-                console.log("no water")
+               // console.log("no water")
             }
         })
         this.input.on('pointerdown', pointer => {
@@ -134,10 +135,27 @@ class Play extends Phaser.Scene{
             emitters.emitting = false
 
         })
-        this.input.keyboard.on('keydown-G', function() {
-            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
-            this.physics.world.debugGraphic.clear()
-        }, this)
+        // this.input.keyboard.on('keydown-G', function() {
+        //     this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
+        //     this.physics.world.debugGraphic.clear()
+        // }, this)
+
+        this.physics.add.collider(this.player,this.water_bucket,(player,water_bucket)=>{
+            water_bucket.x = Phaser.Math.RND.pick(this.water_bucket.validX)
+            water_bucket.y = Phaser.Math.Between(-1000,-1300)
+            player.water = 100
+        })
+        this.physics.add.collider(this.player,this.barrierGroup,(player,barrierGroup)=>{
+            this.player.sfxSiren.stop()
+            this.house.sfxFire.stop()
+            this.sfxBackground.stop()
+            this.player.sfxError.stop()
+            this.player.sfxDrive.stop()
+            this.sfxCrash.play()
+            gameOver = true
+            
+            
+        })
         
         //emitters.setPosition(this.player.x + 40,this.player.y + 30)
         // end of particle emitter
@@ -146,10 +164,17 @@ class Play extends Phaser.Scene{
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
         keyWATER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M)
         this.sfxBackground.play()
+        
     }
     update(){
-
-        this.road.tilePositionY -= .8 * gameSpeed
+        if(gameOver)
+        {
+            this.scene.start('gameOver')
+        }
+        else{
+        this.physics.collide(this.player,this.water_bucket)
+        this.physics.collide(this.player,this.barrierGroup)
+        this.road.tilePositionY -= .4* gameSpeed
         this.grass.tilePositionY-= .5 * gameSpeed
         this.house.update()
         this.water_bucket.update()
@@ -159,7 +184,7 @@ class Play extends Phaser.Scene{
         
         this.scoreDisplay.text = ("Score: " + Math.round(this.house.playerScore))
         this.waterDisplay.text = ("Water: " + Math.round(this.player.water) + "%")
-        
+        }
 
     }
     

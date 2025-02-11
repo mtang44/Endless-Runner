@@ -3,7 +3,10 @@ class Road_Block extends Phaser.Physics.Arcade.Sprite{
         super(scene,x,y,texture,frame)
         
         scene.add.existing(this)
-        this.moveSpeed =2
+        scene.physics.add.existing(this) 
+        this.setImmovable()
+        this.body.setSize(this.width/2,this.height/2)
+        this.moveSpeed = 3
         this.validX = [w/4 + 15,w/2 -50, w/2 + 130]
        
 }

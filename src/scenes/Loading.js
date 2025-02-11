@@ -22,9 +22,10 @@ preload(){
     this.load.audio('sfx-background','./assets/background.mp3')
     this.load.audio('sfx-fire','./assets/fire_sound.mp3')
     this.load.audio('sfx-error','./assets/error.wav')
-
+    this.load.audio('sfx-crash','./assets/crash.mp3')
     // load menu
     this.load.image('fire_background','./assets/fire_background.png')
+    this.load.image('gameover','./assets/gameover.png')
     this.load.image('menu','./assets/menu.png')
     this.load.image('grass','./assets/grass.png')
     this.load.image('road','./assets/road.png')
@@ -33,6 +34,7 @@ preload(){
     this.load.image('water_bucket','./assets/water_bucket.png')
     this.load.image('house','./assets/house.png')
     this.load.image('road_block','./assets/road_block.png')
+    this.load.image('credits','./assets/credits.png')
     this.load.spritesheet('fire_truck','./assets/fire_truck.png',{
         frameWidth: 45,
         frameHeight: 75,
